@@ -1,4 +1,4 @@
-package kw.streamsets.processor
+package kw.streamsets.common
 
 import java.io.Writer
 

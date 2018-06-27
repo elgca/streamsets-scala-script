@@ -1,4 +1,4 @@
-package kw.streamsets.processor.implicits
+package kw.streamsets.common.implicits
 
 import java.math.{BigInteger, BigDecimal => JBigDecimal}
 import java.sql.Timestamp
@@ -8,10 +8,17 @@ import java.util.Date
 import com.streamsets.pipeline.api.Field
 
 import scala.collection.JavaConverters._
-import scala.reflect.runtime.{universe => ru}
 
 trait Decorators {
 
+  /**
+    * 任意类型转换为SDC的Field数据
+    * val field = Map("a" -> "va","b" -> Map("c" -> 666)).asField
+    * record.set(field)
+    * record.get("/b/c") // Field(666)
+    * maker.addRecord(record)
+    * @param any
+    */
   implicit class AsField(any: Any) {
     def asField: Field = any match {
       case s: Field => s

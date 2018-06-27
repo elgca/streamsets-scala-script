@@ -3,6 +3,9 @@ package kw.streamsets.processor
 import com.streamsets.pipeline.api.Record
 import com.streamsets.pipeline.api.base.SingleLaneProcessor.{SingleLaneBatchMaker => Maker}
 
+/**
+  * 存储来自scala脚本的函数
+  */
 class ProcessCallBack {
   private var batchFlag: Option[Boolean] = None
   private var afterF: () => Unit = () => ()

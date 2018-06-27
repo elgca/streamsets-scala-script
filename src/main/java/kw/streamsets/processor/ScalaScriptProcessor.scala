@@ -10,8 +10,8 @@ import com.streamsets.pipeline.api.base.{OnRecordErrorException, SingleLaneProce
 import kw.common.Logging
 import kw.common.data.DependencyUtils
 import kw.common.data.DependencyUtils.MavenCoordinate
-import kw.streamsets.common.{DefaultErrorRecordHandler, ErrorRecordHandler}
-import kw.streamsets.processor.implicits.Decorators
+import kw.streamsets.common.{DefaultErrorRecordHandler, ErrorRecordHandler, LogWriter}
+import kw.streamsets.common.implicits.Decorators
 import org.slf4j.Logger
 
 import scala.collection.JavaConverters._
@@ -33,6 +33,9 @@ abstract class ScalaScriptProcessor
   var callBack: ProcessCallBack = _
   var interp: IMain = _
 
+  /**
+    * sdc常用功能
+    */
   object SdcFunction extends Decorators {
     val log: Logger = self.log
 

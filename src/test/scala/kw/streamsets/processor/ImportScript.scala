@@ -3,7 +3,7 @@ package kw.streamsets.processor
 import com.streamsets.pipeline.api.Record
 import com.streamsets.pipeline.sdk.{ProcessorRunner, StageRunner}
 import kw.streamsets.common.DefaultErrorRecordHandler
-import kw.streamsets.processor.implicits.Decorators
+import kw.streamsets.common.implicits.Decorators
 
 import scala.collection.JavaConverters._
 
