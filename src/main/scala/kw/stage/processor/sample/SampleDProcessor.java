@@ -24,6 +24,7 @@ import com.streamsets.pipeline.api.ConfigGroups;
 import com.streamsets.pipeline.api.GenerateResourceBundle;
 import com.streamsets.pipeline.api.StageDef;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @StageDef(
@@ -45,13 +46,13 @@ public class SampleDProcessor extends SampleProcessor {
             displayPosition = 10,
             group = "SAMPLE"
     )
-    public String[] config;
+    public List<String> config;
 
 
     /** {@inheritDoc} */
     @Override
     public String getConfig() {
-        return Stream.of(config).reduce((a,b) -> a + ";" + b).get();
+        return config.stream().reduce((a,b) -> a + ";" + b).get();
     }
 
 }
