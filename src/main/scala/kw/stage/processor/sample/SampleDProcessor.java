@@ -31,7 +31,7 @@ import java.util.stream.Stream;
         version = 1,
         label = "Sample Processor",
         description = "",
-        icon = "scala.png",
+        icon = "default.png",
         onlineHelpRefUrl = ""
 )
 @ConfigGroups(Groups.class)
