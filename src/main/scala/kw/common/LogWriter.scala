@@ -1,4 +1,4 @@
-package kw.streamsets.common
+package kw.common
 
 import java.io.Writer
 
@@ -16,7 +16,6 @@ class LogWriter(log: Logger) extends Writer {
   }
 
   override def write(str: String) {
-    System.out.println(str)
     Option(str.trim).filterNot(_.isEmpty).foreach(log.info)
   }
 }

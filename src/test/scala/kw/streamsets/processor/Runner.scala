@@ -37,6 +37,8 @@ object Runner {
             "e" -> Map.empty
           ).asField
         )
+        record.get("/a").getValue.toString
+        record.get()
         println(record.get("/c/d").getValueAsString)
         maker.addRecord(record)
     }

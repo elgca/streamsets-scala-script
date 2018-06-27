@@ -7,10 +7,10 @@ import java.util.Date
 import com.streamsets.pipeline.api._
 import com.streamsets.pipeline.api.base.SingleLaneProcessor.{SingleLaneBatchMaker => Maker}
 import com.streamsets.pipeline.api.base.{OnRecordErrorException, SingleLaneProcessor}
-import kw.common.Logging
+import kw.common.{LogWriter, Logging}
 import kw.common.data.DependencyUtils
 import kw.common.data.DependencyUtils.MavenCoordinate
-import kw.streamsets.common.{DefaultErrorRecordHandler, ErrorRecordHandler, LogWriter}
+import kw.streamsets.common.{DefaultErrorRecordHandler, ErrorRecordHandler}
 import kw.streamsets.common.implicits.Decorators
 import org.slf4j.Logger
 

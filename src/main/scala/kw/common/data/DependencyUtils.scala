@@ -2,10 +2,13 @@ package kw.common.data
 
 import java.io.{File, _}
 import java.net.{URI, URISyntaxException}
+import java.nio.charset.Charset
 import java.text.ParseException
 import java.util.UUID
 
-import kw.common.Logging
+import kw.common.{LogWriter, Logging}
+import org.apache.commons.io.Charsets
+import org.apache.commons.io.output.WriterOutputStream
 import org.apache.commons.lang3.StringUtils
 import org.apache.ivy.Ivy
 import org.apache.ivy.core.LogOptions
@@ -23,7 +26,7 @@ import org.apache.ivy.plugins.resolver.{ChainResolver, FileSystemResolver, IBibl
   * copy from sparksubmitutil
   */
 object DependencyUtils extends Logging {
-  var printStream: PrintStream = System.out
+  val printStream: PrintStream = new PrintStream(new WriterOutputStream(new LogWriter(log), "utf8"))
 
   /**
     * Return a well-formed URI for the file described by a user input string.
@@ -226,14 +229,7 @@ object DependencyUtils extends Logging {
         val resolveOptions = new ResolveOptions
         resolveOptions.setTransitive(true)
         val retrieveOptions = new RetrieveOptions
-        // Turn downloading and logging off for testing
-        if (isTest) {
-          resolveOptions.setDownload(false)
-          resolveOptions.setLog(LogOptions.LOG_QUIET)
-          retrieveOptions.setLog(LogOptions.LOG_QUIET)
-        } else {
-          resolveOptions.setDownload(true)
-        }
+        resolveOptions.setDownload(true)
 
         // Default configuration name for ivy
         val ivyConfName = "default"
@@ -300,10 +296,10 @@ object DependencyUtils extends Logging {
     // Add scala exclusion rule
     md.addExcludeRule(createExclusion("*:scala-library:*", ivySettings, ivyConfName))
 
-    IVY_DEFAULT_EXCLUDES.foreach { comp =>
-      md.addExcludeRule(createExclusion(s"org.apache.spark:spark-$comp*:*", ivySettings,
-        ivyConfName))
-    }
+//    IVY_DEFAULT_EXCLUDES.foreach { comp =>
+//      md.addExcludeRule(createExclusion(s"org.apache.spark:spark-$comp*:*", ivySettings,
+//        ivyConfName))
+//    }
   }
 
   /** Adds the given maven coordinates to Ivy's module descriptor. */
