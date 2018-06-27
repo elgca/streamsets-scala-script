@@ -40,19 +40,19 @@ public class SampleDProcessor extends SampleProcessor {
 
     @ConfigDef(
             required = true,
-            type = ConfigDef.Type.LIST,
+            type = ConfigDef.Type.STRING,
             defaultValue = "default",
             label = "Sample Config",
             displayPosition = 10,
             group = "SAMPLE"
     )
-    public List<String> config;
+    public String config;
 
 
     /** {@inheritDoc} */
     @Override
     public String getConfig() {
-        return config.stream().reduce((a,b) -> a + ";" + b).get();
+        return config;
     }
 
 }
