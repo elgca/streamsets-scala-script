@@ -168,8 +168,10 @@ abstract class ScalaScriptProcessor
   }
 
   override def destroy(): Unit = {
-    try callBack.destroy()
-    catch {
+    try {
+      callBack.destroy()
+      interp.close()
+    } catch {
       case e: Exception =>
         log.error(Errors.SCRIPTING_09.getMessage, e)
     }
